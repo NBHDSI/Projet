@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="card shadow-sm">
+      <div class="card-header">Connexion à l'espace administrateur</div>
+      <div class="card-body">
+        <form [formRoot]="connexionForm" (submit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input id="email" type="text" class="form-control" [formField]="connexionForm.email">
+            @if (connexionForm.email().invalid() && connexionForm.email().touched()) {
+              @for (erreur of connexionForm.email().errors(); track $index) {
+                <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+              }
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="motDePasse">Mot de passe</label>
+            <input id="motDePasse" type="password" class="form-control" [formField]="connexionForm.motDePasse">
+            @if (connexionForm.motDePasse().invalid() && connexionForm.motDePasse().touched()) {
+              @for (erreur of connexionForm.motDePasse().errors(); track $index) {
+                <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+              }
+            }
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100" [disabled]="connexionForm().invalid()">
+            Se connecter
+          </button>
+        </form>
+
+        @if (message()) {
+          <div class="alert alert-danger mt-3 mb-0">{{ message() }}</div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,174 @@
+{
+  "produits": [
+    {
+      "id": "p1",
+      "nom": "iPhone 13 Pro",
+      "photo": "/images/iphone-13-pro.webp",
+      "prix": 3599,
+      "disponible": true,
+      "dateSortie": "2021-09-24",
+      "categorie": "Smartphone",
+      "description": "Smartphone Apple avec écran ProMotion 120 Hz, puce A15 Bionic et triple appareil photo.",
+      "caracteristiques": [
+        { "nom": "Écran", "valeur": "6,1 pouces Super Retina XDR" },
+        { "nom": "Stockage", "valeur": "256 Go" },
+        { "nom": "Appareil photo", "valeur": "12 Mpx triple" },
+        { "nom": "Puce", "valeur": "A15 Bionic" },
+        { "nom": "Garantie", "valeur": "12 mois" }
+      ]
+    },
+    {
+      "id": "p2",
+      "nom": "iPhone X",
+      "photo": "/images/iphone-x.webp",
+      "prix": 1899,
+      "disponible": true,
+      "dateSortie": "2017-11-03",
+      "categorie": "Smartphone",
+      "description": "Smartphone Apple avec écran OLED bord à bord et reconnaissance faciale Face ID.",
+      "caracteristiques": [
+        { "nom": "Écran", "valeur": "5,8 pouces OLED" },
+        { "nom": "Stockage", "valeur": "64 Go" },
+        { "nom": "Appareil photo", "valeur": "12 Mpx double" },
+        { "nom": "Puce", "valeur": "A11 Bionic" },
+        { "nom": "Garantie", "valeur": "12 mois" }
+      ]
+    },
+    {
+      "id": "p3",
+      "nom": "Samsung Galaxy S10",
+      "photo": "/images/samsung-galaxy-s10.webp",
+      "prix": 1499,
+      "disponible": true,
+      "dateSortie": "2019-03-08",
+      "categorie": "Smartphone",
+      "description": "Smartphone Samsung avec écran Dynamic AMOLED et triple appareil photo.",
+      "caracteristiques": [
+        { "nom": "Écran", "valeur": "6,1 pouces Dynamic AMOLED" },
+        { "nom": "Stockage", "valeur": "128 Go" },
+        { "nom": "Appareil photo", "valeur": "16 Mpx triple" },
+        { "nom": "Mémoire", "valeur": "8 Go de RAM" },
+        { "nom": "Garantie", "valeur": "12 mois" }
+      ]
+    },
+    {
+      "id": "p4",
+      "nom": "Samsung Galaxy S8",
+      "photo": "/images/samsung-galaxy-s8.webp",
+      "prix": 999,
+      "disponible": false,
+      "dateSortie": "2017-04-21",
+      "categorie": "Smartphone",
+      "description": "Smartphone Samsung avec écran incurvé Infinity Display et lecteur d'empreintes.",
+      "caracteristiques": [
+        { "nom": "Écran", "valeur": "5,8 pouces Super AMOLED" },
+        { "nom": "Stockage", "valeur": "64 Go" },
+        { "nom": "Appareil photo", "valeur": "12 Mpx" },
+        { "nom": "Mémoire", "valeur": "4 Go de RAM" },
+        { "nom": "Garantie", "valeur": "6 mois" }
+      ]
+    },
+    {
+      "id": "p5",
+      "nom": "Realme C35",
+      "photo": "/images/realme-c35.webp",
+      "prix": 549,
+      "disponible": true,
+      "dateSortie": "2022-03-01",
+      "categorie": "Smartphone",
+      "description": "Smartphone d'entrée de gamme avec grande batterie et écran Full HD+.",
+      "caracteristiques": [
+        { "nom": "Écran", "valeur": "6,6 pouces Full HD+" },
+        { "nom": "Stockage", "valeur": "64 Go" },
+        { "nom": "Appareil photo", "valeur": "50 Mpx" },
+        { "nom": "Batterie", "valeur": "5000 mAh" },
+        { "nom": "Garantie", "valeur": "12 mois" }
+      ]
+    },
+    {
+      "id": "p6",
+      "nom": "MacBook Pro 14 pouces",
+      "photo": "/images/macbook-pro-14.webp",
+      "prix": 8999,
+      "disponible": true,
+      "dateSortie": "2021-10-26",
+      "categorie": "Ordinateur portable",
+      "description": "Ordinateur portable Apple avec puce M1 Pro et écran Liquid Retina XDR.",
+      "caracteristiques": [
+        { "nom": "Écran", "valeur": "14,2 pouces Liquid Retina XDR" },
+        { "nom": "Stockage", "valeur": "SSD 512 Go" },
+        { "nom": "Mémoire", "valeur": "16 Go" },
+        { "nom": "Processeur", "valeur": "Apple M1 Pro" },
+        { "nom": "Garantie", "valeur": "12 mois" }
+      ]
+    },
+    {
+      "id": "p7",
+      "nom": "Dell XPS 13 9300",
+      "photo": "/images/dell-xps-13.webp",
+      "prix": 4699,
+      "disponible": true,
+      "dateSortie": "2020-02-01",
+      "categorie": "Ordinateur portable",
+      "description": "Ultrabook Dell avec écran InfinityEdge et châssis en aluminium usiné.",
+      "caracteristiques": [
+        { "nom": "Écran", "valeur": "13,4 pouces Full HD+" },
+        { "nom": "Stockage", "valeur": "SSD 512 Go" },
+        { "nom": "Mémoire", "valeur": "8 Go" },
+        { "nom": "Processeur", "valeur": "Intel Core i5" },
+        { "nom": "Garantie", "valeur": "12 mois" }
+      ]
+    },
+    {
+      "id": "p8",
+      "nom": "Lenovo Yoga 920",
+      "photo": "/images/lenovo-yoga-920.webp",
+      "prix": 3299,
+      "disponible": false,
+      "dateSortie": "2018-01-15",
+      "categorie": "Ordinateur portable",
+      "description": "Ordinateur portable convertible Lenovo avec charnière à 360 degrés et stylet.",
+      "caracteristiques": [
+        { "nom": "Écran", "valeur": "13,9 pouces tactile" },
+        { "nom": "Stockage", "valeur": "SSD 256 Go" },
+        { "nom": "Mémoire", "valeur": "8 Go" },
+        { "nom": "Processeur", "valeur": "Intel Core i7" },
+        { "nom": "Garantie", "valeur": "6 mois" }
+      ]
+    },
+    {
+      "id": "p9",
+      "nom": "Huawei MateBook X Pro",
+      "photo": "/images/huawei-matebook-x-pro.webp",
+      "prix": 4299,
+      "disponible": true,
+      "dateSortie": "2021-06-01",
+      "categorie": "Ordinateur portable",
+      "description": "Ultrabook Huawei avec écran 3K tactile et châssis entièrement métallique.",
+      "caracteristiques": [
+        { "nom": "Écran", "valeur": "13,9 pouces 3K tactile" },
+        { "nom": "Stockage", "valeur": "SSD 512 Go" },
+        { "nom": "Mémoire", "valeur": "16 Go" },
+        { "nom": "Processeur", "valeur": "Intel Core i7" },
+        { "nom": "Garantie", "valeur": "12 mois" }
+      ]
+    }
+  ],
+  "comptes": [
+    {
+      "id": "a1",
+      "nom": "Administrateur TechShop",
+      "email": "admin@admin.com",
+      "motDePasse": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "c1",
+      "nom": "Nassim",
+      "email": "nassim@gmail.com",
+      "motDePasse": "nassim",
+      "role": "client"
+    }
+  ],
+  "commandes": []
+}

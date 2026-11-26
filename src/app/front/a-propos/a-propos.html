@@ -1,0 +1,47 @@
+<h1 class="h3 mb-3">À propos de {{ nomApplication }}</h1>
+
+<div class="row g-4">
+  <div class="col-md-7">
+    <div class="card h-100">
+      <div class="card-header">Notre boutique</div>
+      <div class="card-body">
+        <p>
+          {{ nomApplication }} est une boutique en ligne spécialisée dans la vente de
+          <strong>smartphones</strong> et d'<strong>ordinateurs portables</strong>.
+        </p>
+        <p>
+          Le catalogue est consultable par tous les internautes, sans authentification.
+          Un visiteur peut créer gratuitement un compte client pour enregistrer ses produits
+          favoris, les ajouter à son panier et passer ses commandes en ligne.
+          Le catalogue et les commandes sont gérés par l'administrateur du site.
+        </p>
+        <p>
+          Les produits sont stockés dans un serveur JSON (json-server) : les données sont
+          sauvegardées dans un fichier unique.
+        </p>
+        <div class="alert alert-info mb-0">
+          <i class="bi bi-tools"></i> {{ etatProjet }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class="card mb-4">
+      <div class="card-header">Informations sur le projet</div>
+      <div class="card-body">
+        <p><strong>Unité :</strong> {{ unite }}</p>
+        <p><strong>Année universitaire :</strong> {{ annee }}</p>
+        <p class="mb-0"><strong>État :</strong> en cours de développement</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">Technologies utilisées</div>
+      <div class="card-body">
+        <p>{{ technologies }}</p>
+        <p class="mb-0 text-muted">Version de l'application : {{ version }}</p>
+      </div>
+    </div>
+  </div>
+</div>

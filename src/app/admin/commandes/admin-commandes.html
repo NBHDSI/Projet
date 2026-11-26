@@ -1,0 +1,74 @@
+<h1 class="h3 mb-3">Commandes des clients</h1>
+
+@if (erreur()) {
+  <div class="alert alert-danger">{{ erreur() }}</div>
+}
+
+<div class="row g-3 mb-3">
+  <div class="col-md-6">
+    <div class="card text-bg-primary">
+      <div class="card-body">
+        <p class="card-title mb-1">Nombre de commandes</p>
+        <p class="display-6 mb-0">{{ nombreCommandes() }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card text-bg-success">
+      <div class="card-body">
+        <p class="card-title mb-1">Chiffre d'affaires (TTC)</p>
+        <p class="display-6 mb-0">{{ chiffreAffaires() | currency:'TND':'symbol':'1.0-0' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>Commande</th>
+        <th>Client</th>
+        <th>Date</th>
+        <th>Livraison</th>
+        <th>Articles</th>
+        <th>Total (TTC)</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (commande of commandes(); track commande.id) {
+        <tr>
+          <td>{{ commande.id }}</td>
+          <td>
+            {{ commande.nomClient }}
+            <br>
+            <span class="text-muted small">{{ commande.client }}</span>
+          </td>
+          <td>{{ commande.date | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            {{ commande.adresse }}
+            <br>
+            <span class="text-muted small">{{ commande.telephone }} - {{ commande.paiement }}</span>
+          </td>
+          <td>{{ nombreArticles(commande) }}</td>
+          <td class="fw-bold">{{ commande.total | currency:'TND':'symbol':'1.2-2' }}</td>
+          <td>
+            <span [class]="{'badge': true, 'text-bg-warning': commande.statut == 'En attente', 'text-bg-info': commande.statut == 'Expédiée', 'text-bg-success': commande.statut == 'Livrée'}">
+              {{ commande.statut }}
+            </span>
+            <select #statut class="form-select form-select-sm mt-1" (change)="onChangerStatut(commande, statut.value)">
+              <option value="En attente" [selected]="commande.statut == 'En attente'">En attente</option>
+              <option value="Expédiée" [selected]="commande.statut == 'Expédiée'">Expédiée</option>
+              <option value="Livrée" [selected]="commande.statut == 'Livrée'">Livrée</option>
+            </select>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="7" class="text-center">Aucune commande pour le moment.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

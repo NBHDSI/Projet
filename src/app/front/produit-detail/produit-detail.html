@@ -1,0 +1,72 @@
+@if (produit(); as p) {
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Boutique</a></li>
+      <li class="breadcrumb-item">{{ p.categorie }}</li>
+      <li class="breadcrumb-item active">{{ p.nom }}</li>
+    </ol>
+  </nav>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <img [src]="p.photo" class="img-fluid rounded shadow-sm bg-white p-4" [alt]="p.nom" style="max-height: 460px; object-fit: contain; width: 100%;">
+    </div>
+    <div class="col-md-6">
+      <span class="badge text-bg-secondary">{{ p.categorie }}</span>
+      <h1 class="h3 mt-2">{{ p.nom | uppercase }}</h1>
+      <p class="text-muted mb-1">Référence : <strong>{{ p.id }}</strong></p>
+      <p class="mb-1" [style]="{'font-size': '1.75rem', 'font-weight': 'bold', 'color': '#0d6efd'}">
+        {{ p.prix | currency:'TND':'symbol':'1.0-0' }}
+      </p>
+      <p class="text-muted">Prix TTC (TVA 19%) : {{ p.prix | ttc | currency:'TND':'symbol':'1.2-2' }}</p>
+      <p>Date de sortie : <strong>{{ p.dateSortie | date:'dd/MM/yyyy':'UTC' }}</strong></p>
+      <p>
+        Disponibilité :
+        <span [class]="classeDisponibilite(p)">{{ texteDisponibilite(p) }}</span>
+      </p>
+
+      <h2 class="h5 mt-4">Description</h2>
+      <p>{{ p.description }}</p>
+
+      <h2 class="h5 mt-4">Caractéristiques</h2>
+      <ul class="list-group mb-4">
+        @for (caracteristique of p.caracteristiques; track $index) {
+          <li class="list-group-item d-flex justify-content-between">
+            <span>{{ caracteristique.nom | titlecase }}</span>
+            <span class="fw-bold">{{ caracteristique.valeur }}</span>
+          </li>
+        } @empty {
+          <li class="list-group-item">Aucune caractéristique.</li>
+        }
+      </ul>
+
+      @if (estClient()) {
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-success" [disabled]="!p.disponible" (click)="onAjouterAuPanier()">
+            <i class="bi bi-cart-plus"></i> Ajouter au panier
+          </button>
+          <button type="button" class="btn btn-outline-danger" (click)="onBasculerFavori()">
+            <i class="bi bi-heart"></i> {{ texteFavori() }}
+          </button>
+          <a class="btn btn-outline-primary" routerLink="/panier">Voir mon panier</a>
+          <button type="button" class="btn btn-secondary" (click)="onRetour()">Retour à la liste</button>
+        </div>
+        @if (message()) {
+          <div class="alert alert-success mt-3 mb-0">{{ message() }}</div>
+        }
+      } @else {
+        <div class="alert alert-info">
+          Connectez-vous ou créez un compte pour ajouter ce produit à votre panier ou à vos favoris.
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-primary" routerLink="/connexion">Se connecter</a>
+          <a class="btn btn-outline-primary" routerLink="/inscription">Créer un compte</a>
+          <button type="button" class="btn btn-secondary" (click)="onRetour()">Retour à la liste</button>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="alert alert-warning">Produit introuvable.</div>
+  <button type="button" class="btn btn-secondary" (click)="onRetour()">Retour à la liste</button>
+}

@@ -1,0 +1,24 @@
+<div class="card h-100 carte-produit" [class.border-success]="produit().disponible" [class.border-danger]="!produit().disponible">
+  <img [src]="produit().photo" class="card-img-top bg-white p-3 border-bottom" [alt]="produit().nom" style="height: 210px; object-fit: contain;">
+  <div class="card-body">
+    <span class="badge text-bg-secondary">{{ produit().categorie }}</span>
+    <h2 class="card-title h5 mt-2">{{ produit().nom }}</h2>
+    <p class="card-text fw-bold text-primary mb-2">
+      {{ produit().prix | currency:'TND':'symbol':'1.0-0' }}
+    </p>
+    <span [class]="classeDisponibilite()">{{ texteDisponibilite() }}</span>
+  </div>
+  <div class="card-footer d-flex justify-content-between align-items-center">
+    <a class="btn btn-sm btn-primary" [routerLink]="['/produit', produit().id]">Détails</a>
+    @if (estClient()) {
+      <div class="d-flex gap-1">
+        <button type="button" class="btn btn-sm btn-success" [disabled]="!produit().disponible" (click)="onAjouterAuPanier()" title="Ajouter au panier">
+          <i class="bi bi-cart-plus"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-danger" (click)="onBasculerFavori()" title="Favori">
+          <i [class]="classeCoeur()"></i>
+        </button>
+      </div>
+    }
+  </div>
+</div>

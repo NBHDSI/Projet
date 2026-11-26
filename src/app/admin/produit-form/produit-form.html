@@ -1,0 +1,114 @@
+<h1 class="h3 mb-4">{{ titrePage() }}</h1>
+
+@if (erreur()) {
+  <div class="alert alert-danger">{{ erreur() }}</div>
+}
+
+<form [formRoot]="produitForm" (submit)="onSubmit()" class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label" for="nom">Nom du produit</label>
+    <input id="nom" type="text" class="form-control" placeholder="Ex : iPhone 13 Pro" [formField]="produitForm.nom">
+    @if (produitForm.nom().invalid() && produitForm.nom().touched()) {
+      @for (erreur of produitForm.nom().errors(); track $index) {
+        <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+      }
+    }
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label" for="categorie">Catégorie</label>
+    <input id="categorie" type="text" class="form-control" placeholder="Ex : Smartphone" [formField]="produitForm.categorie">
+    @if (produitForm.categorie().invalid() && produitForm.categorie().touched()) {
+      @for (erreur of produitForm.categorie().errors(); track $index) {
+        <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+      }
+    }
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label" for="prix">Prix (DT)</label>
+    <input id="prix" type="number" class="form-control" [formField]="produitForm.prix">
+    @if (produitForm.prix().invalid() && produitForm.prix().touched()) {
+      @for (erreur of produitForm.prix().errors(); track $index) {
+        <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+      }
+    }
+  </div>
+
+  <div class="col-md-4">
+    <label class="form-label" for="dateSortie">Date de sortie</label>
+    <input id="dateSortie" type="date" class="form-control" [formField]="produitForm.dateSortie">
+    @if (produitForm.dateSortie().invalid() && produitForm.dateSortie().touched()) {
+      @for (erreur of produitForm.dateSortie().errors(); track $index) {
+        <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+      }
+    }
+  </div>
+
+  <div class="col-md-4 d-flex align-items-end">
+    <div class="form-check mb-2">
+      <input id="disponible" type="checkbox" class="form-check-input" [formField]="produitForm.disponible">
+      <label class="form-check-label" for="disponible">Produit disponible</label>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label" for="photo">Photo (chemin ou adresse de l'image)</label>
+    <input id="photo" type="text" class="form-control" placeholder="Ex : /images/iphone-13-pro.webp" [formField]="produitForm.photo">
+    @if (produitForm.photo().invalid() && produitForm.photo().touched()) {
+      @for (erreur of produitForm.photo().errors(); track $index) {
+        <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+      }
+    }
+  </div>
+
+  <div class="col-md-6">
+    <label class="form-label" for="description">Description</label>
+    <input id="description" type="text" class="form-control" [formField]="produitForm.description">
+    @if (produitForm.description().invalid() && produitForm.description().touched()) {
+      @for (erreur of produitForm.description().errors(); track $index) {
+        <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+      }
+    }
+  </div>
+
+  <div class="col-12">
+    <h2 class="h5">Caractéristiques</h2>
+    <button type="button" class="btn btn-sm btn-secondary mb-2" (click)="onAjouterCaracteristique()">
+      Ajouter une caractéristique
+    </button>
+
+    @for (caracteristique of produitForm.caracteristiques; track $index) {
+      <div class="row g-2 align-items-start mb-2">
+        <div class="col-md-5">
+          <input type="text" class="form-control" placeholder="Nom (ex : RAM)" [formField]="caracteristique.nom">
+          @if (caracteristique.nom().invalid() && caracteristique.nom().dirty()) {
+            @for (erreur of caracteristique.nom().errors(); track $index) {
+              <div class="alert alert-warning py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+            }
+          }
+        </div>
+        <div class="col-md-5">
+          <input type="text" class="form-control" placeholder="Valeur (ex : 8 Go)" [formField]="caracteristique.valeur">
+          @if (caracteristique.valeur().invalid() && caracteristique.valeur().dirty()) {
+            @for (erreur of caracteristique.valeur().errors(); track $index) {
+              <div class="alert alert-warning py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+            }
+          }
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-danger w-100" (click)="onSupprimerCaracteristique($index)">
+            Supprimer
+          </button>
+        </div>
+      </div>
+    } @empty {
+      <p class="text-muted">Aucune caractéristique pour ce produit.</p>
+    }
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary" [disabled]="produitForm().invalid()">Enregistrer</button>
+    <a class="btn btn-secondary" routerLink="/admin/gestion/produits">Annuler</a>
+  </div>
+</form>

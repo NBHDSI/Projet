@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+app-front-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+app-front-layout > .container {
+  flex: 1;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.hero {
+  background: linear-gradient(120deg, #0b1f3a 0%, #123d6b 60%, #1b6ca8 100%);
+}
+
+.carte-produit {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.carte-produit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.12);
+}

@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+  <div class="col-md-7 col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-header">Créer un compte client</div>
+      <div class="card-body">
+        <form [formRoot]="inscriptionForm" (submit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label" for="nomClient">Nom et prénom</label>
+            <input id="nomClient" type="text" class="form-control" placeholder="Ex : Ahmed Ben Ali" [formField]="inscriptionForm.nom">
+            @if (inscriptionForm.nom().invalid() && inscriptionForm.nom().touched()) {
+              @for (erreur of inscriptionForm.nom().errors(); track $index) {
+                <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+              }
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="emailInscription">Email</label>
+            <input id="emailInscription" type="text" class="form-control" placeholder="Ex : ahmed@mail.tn" [formField]="inscriptionForm.email">
+            @if (inscriptionForm.email().invalid() && inscriptionForm.email().touched()) {
+              @for (erreur of inscriptionForm.email().errors(); track $index) {
+                <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+              }
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="motDePasseInscription">Mot de passe</label>
+            <input id="motDePasseInscription" type="password" class="form-control" [formField]="inscriptionForm.motDePasse">
+            @if (inscriptionForm.motDePasse().invalid() && inscriptionForm.motDePasse().touched()) {
+              @for (erreur of inscriptionForm.motDePasse().errors(); track $index) {
+                <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+              }
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="confirmation">Confirmation du mot de passe</label>
+            <input id="confirmation" type="password" class="form-control" [formField]="inscriptionForm.confirmation">
+            @if (inscriptionForm.confirmation().invalid() && inscriptionForm.confirmation().touched()) {
+              @for (erreur of inscriptionForm.confirmation().errors(); track $index) {
+                <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+              }
+            }
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100" [disabled]="inscriptionForm().invalid()">
+            Créer mon compte
+          </button>
+        </form>
+
+        @if (erreur()) {
+          <div class="alert alert-danger mt-3 mb-0">{{ erreur() }}</div>
+        }
+
+        <p class="text-center mt-3 mb-0">
+          Déjà inscrit ?
+          <a routerLink="/connexion">Se connecter</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

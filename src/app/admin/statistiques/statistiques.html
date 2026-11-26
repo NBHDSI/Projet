@@ -1,0 +1,85 @@
+<h1 class="h3 mb-4">Statistiques du catalogue</h1>
+
+@if (erreur()) {
+  <div class="alert alert-danger">{{ erreur() }}</div>
+}
+
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="card text-bg-primary h-100">
+      <div class="card-body">
+        <p class="card-title mb-1">Nombre de produits</p>
+        <p class="display-6 mb-0">{{ nombreProduits() }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-success h-100">
+      <div class="card-body">
+        <p class="card-title mb-1">Produits disponibles</p>
+        <p class="display-6 mb-0">{{ nombreDisponibles() }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-danger h-100">
+      <div class="card-body">
+        <p class="card-title mb-1">Produits indisponibles</p>
+        <p class="display-6 mb-0">{{ nombreIndisponibles() }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3 mt-1">
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <p class="card-title mb-1">Valeur du catalogue</p>
+        <p class="h4 mb-0">{{ valeurCatalogue() | currency:'TND':'symbol':'1.0-0' }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <p class="card-title mb-1">Prix moyen</p>
+        <p class="h4 mb-0">{{ prixMoyen() | number:'1.2-2' }} DT</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <p class="card-title mb-1">Nombre de catégories</p>
+        <p class="h4 mb-0">{{ nombreCategories() }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <div class="card-body">
+    <h2 class="h5 mb-3">Répartition du stock</h2>
+
+    <p class="d-flex justify-content-between mb-1">
+      <span>Produits disponibles</span>
+      <strong>{{ pourcentageDisponibles() | percent }}</strong>
+    </p>
+    <div class="progress mb-3" style="height: 12px;">
+      <div class="progress-bar bg-success" [style.width.%]="pourcentageDisponibles() * 100"></div>
+    </div>
+
+    <p class="d-flex justify-content-between mb-1">
+      <span>Produits indisponibles</span>
+      <strong>{{ pourcentageIndisponibles() | percent }}</strong>
+    </p>
+    <div class="progress" style="height: 12px;">
+      <div class="progress-bar bg-danger" [style.width.%]="pourcentageIndisponibles() * 100"></div>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-info mt-4">
+  Produit le plus cher du catalogue : <strong>{{ produitLePlusCher() }}</strong>
+</div>

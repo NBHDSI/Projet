@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-md-7 col-lg-6">
+    <h1 class="h3 mb-3">Modifier mon mot de passe</h1>
+
+    <form [formRoot]="motDePasseForm" (submit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label" for="ancien">Ancien mot de passe</label>
+        <input id="ancien" type="password" class="form-control" [formField]="motDePasseForm.ancien">
+        @if (motDePasseForm.ancien().invalid() && motDePasseForm.ancien().touched()) {
+          @for (erreur of motDePasseForm.ancien().errors(); track $index) {
+            <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+          }
+        }
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="nouveau">Nouveau mot de passe</label>
+        <input id="nouveau" type="password" class="form-control" [formField]="motDePasseForm.nouveau">
+        @if (motDePasseForm.nouveau().invalid() && motDePasseForm.nouveau().touched()) {
+          @for (erreur of motDePasseForm.nouveau().errors(); track $index) {
+            <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+          }
+        }
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="confirmation">Confirmation du nouveau mot de passe</label>
+        <input id="confirmation" type="password" class="form-control" [formField]="motDePasseForm.confirmation">
+        @if (motDePasseForm.confirmation().invalid() && motDePasseForm.confirmation().touched()) {
+          @for (erreur of motDePasseForm.confirmation().errors(); track $index) {
+            <div class="alert alert-danger py-1 px-2 mt-2 mb-0">{{ erreur.message }}</div>
+          }
+        }
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="motDePasseForm().invalid()">Modifier</button>
+    </form>
+
+    @if (message()) {
+      <div class="alert alert-success mt-3">{{ message() }}</div>
+    }
+    @if (erreur()) {
+      <div class="alert alert-danger mt-3">{{ erreur() }}</div>
+    }
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<section class="hero rounded-4 p-4 p-md-5 mb-4 text-white">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-8">
+      <span class="badge text-bg-warning mb-2">Boutique en ligne</span>
+      <h1 class="display-6 fw-bold">Smartphones et ordinateurs portables au meilleur prix</h1>
+      <p class="lead mb-3">
+        Un catalogue sélectionné, une garantie constructeur de 6 à 12 mois et une livraison sur toute la Tunisie.
+      </p>
+      <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-warning" href="#catalogue">Voir le catalogue</a>
+        <a class="btn btn-outline-light" routerLink="/a-propos">Qui sommes-nous ?</a>
+      </div>
+    </div>
+    <div class="col-lg-4 text-center d-none d-lg-block">
+      <i class="bi bi-phone display-1 me-3"></i>
+      <i class="bi bi-laptop display-1"></i>
+    </div>
+  </div>
+</section>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="card h-100 border-0 bg-light">
+      <div class="card-body d-flex align-items-center gap-2">
+        <i class="bi bi-truck fs-3 text-primary"></i>
+        <span>Livraison en 48 h</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 border-0 bg-light">
+      <div class="card-body d-flex align-items-center gap-2">
+        <i class="bi bi-shield-check fs-3 text-primary"></i>
+        <span>Garantie constructeur</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 border-0 bg-light">
+      <div class="card-body d-flex align-items-center gap-2">
+        <i class="bi bi-credit-card fs-3 text-primary"></i>
+        <span>Paiement à la livraison</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="h4 mb-3" id="catalogue">Notre catalogue</h2>
+
+@if (erreur()) {
+  <div class="alert alert-danger">{{ erreur() }}</div>
+}
+
+<div class="card mb-4">
+  <div class="card-body">
+    <form [formRoot]="rechercheForm" class="row g-2 align-items-end">
+      <div class="col-md-5">
+        <label class="form-label" for="rechercheNom">Nom du produit</label>
+        <input id="rechercheNom" type="text" class="form-control" placeholder="Ex : iPhone" [formField]="rechercheForm.nom">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label" for="recherchePrix">Prix maximum (DT)</label>
+        <input id="recherchePrix" type="number" class="form-control" [formField]="rechercheForm.prixMax">
+      </div>
+      <div class="col-md-3">
+        <button type="button" class="btn btn-outline-secondary w-100" (click)="onReinitialiser()">
+          Réinitialiser
+        </button>
+      </div>
+    </form>
+
+    <hr>
+
+    <div class="d-flex flex-wrap gap-2">
+      <button type="button" [class]="classeCategorie('')" (click)="onCategorie('')">Toutes les catégories</button>
+      @for (categorie of categories(); track categorie) {
+        <button type="button" [class]="classeCategorie(categorie)" (click)="onCategorie(categorie)">{{ categorie }}</button>
+      }
+    </div>
+  </div>
+</div>
+
+<p class="text-muted">{{ produitsFiltres().length }} produit(s) trouvé(s)</p>
+
+<div class="row g-4">
+  @for (produit of produitsFiltres(); track produit.id) {
+    <div class="col-md-6 col-lg-4">
+      <app-produit-item [produit]="produit" (favoriDemande)="onBasculerFavori($event)" (ajoutDemande)="onAjouterAuPanier($event)" />
+    </div>
+  } @empty {
+    <div class="col-12">
+      <div class="alert alert-info">Aucun produit ne correspond à votre recherche.</div>
+    </div>
+  }
+</div>

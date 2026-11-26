@@ -1,0 +1,53 @@
+<h1 class="h3 mb-3">Mes commandes</h1>
+
+@if (erreur()) {
+  <div class="alert alert-danger">{{ erreur() }}</div>
+}
+
+@for (commande of commandes(); track commande.id) {
+  <div class="card mb-3">
+    <div class="card-header d-flex justify-content-between">
+      <span>Commande n° {{ commande.id }}</span>
+      <span class="d-flex align-items-center gap-2">
+        @switch (commande.statut) {
+          @case ('En attente') {
+            <span class="badge text-bg-warning">En attente</span>
+          }
+          @case ('Expédiée') {
+            <span class="badge text-bg-info">Expédiée</span>
+          }
+          @case ('Livrée') {
+            <span class="badge text-bg-success">Livrée</span>
+          }
+          @default {
+            <span class="badge text-bg-secondary">{{ commande.statut }}</span>
+          }
+        }
+        <span class="text-muted">{{ commande.date | date:'dd/MM/yyyy HH:mm' }}</span>
+      </span>
+    </div>
+    <div class="card-body">
+      <p class="mb-2">
+        {{ nombreArticles(commande) }} article(s) - Total payé :
+        <strong class="text-primary">{{ commande.total | currency:'TND':'symbol':'1.2-2' }}</strong>
+      </p>
+      <p class="text-muted small mb-2">
+        Livraison : {{ commande.adresse }} - {{ commande.telephone }} - {{ commande.paiement }}
+      </p>
+      @if (commande.remise > 0) {
+        <p class="text-success small mb-2">Remise appliquée : {{ commande.remise | percent }}</p>
+      }
+      <ul class="list-group list-group-flush">
+        @for (ligne of commande.lignes; track $index; let indice = $index; let nb = $count) {
+          <li class="list-group-item d-flex justify-content-between px-0">
+            <span><span class="text-muted small me-1">{{ indice + 1 }}/{{ nb }}</span>{{ ligne.nom }} x {{ ligne.quantite }}</span>
+            <span>{{ ligne.prix * ligne.quantite | currency:'TND':'symbol':'1.0-0' }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+} @empty {
+  <div class="alert alert-info">Vous n'avez encore passé aucune commande.</div>
+  <a class="btn btn-primary" routerLink="/">Voir les produits</a>
+}
